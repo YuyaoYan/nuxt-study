@@ -1,10 +1,18 @@
 <template>
-  <div>
-    button
-  </div>
+	<div>
+		<nuxt-content :document="page" />
+    <ContentDoc />
+	</div>
 </template>
-<script setup lang="ts">
-definePageMeta({
-  title: '某个页面'
-})
+
+<script>
+export default {
+	async asyncData({ $content }) {
+		const page = await $content('button').fetch()
+
+		return {
+			page
+		}
+	}
+}
 </script>
